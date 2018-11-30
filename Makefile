@@ -6,7 +6,7 @@
 #    By: erli <erli@42.fr>                          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/30 10:43:47 by erli              #+#    #+#              #
-#    Updated: 2018/11/30 11:49:02 by erli             ###   ########.fr        #
+#    Updated: 2018/11/30 17:56:54 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,7 +16,7 @@ SRCSDIR			=	srcs
 
 OBJSDIR			=	objs
 
-SRCS			=	main.c
+SRCS			=	main.c				mlx_line_put.c		mlx_colourgiver_uni.c
 
 OBJS			=	$(addprefix $(OBJSDIR)/,$(SRCS:.c=.o))
 
@@ -44,7 +44,7 @@ $(NAME)			:	$(LIBFT) $(LIBMLX) $(OBJS) includes/fdf.h
 
 $(OBJSDIR)/%.o	:	$(SRCSDIR)/%.c 
 					@mkdir -p $(OBJSDIR)
-					$(CC) -c $(CFLAGS) $(INCL) -o $@ $< $(FRAMEWORK)
+					$(CC) -c $(CFLAGS) $(INCL) -o $@ $<
 
 $(LIBFT)		:	
 					make -C libft/ && make -C libft/ clean
