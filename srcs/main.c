@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 11:05:44 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 10:16:49 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 14:35:10 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 #include "libft.h"
 #include "mlxadd.h"
 #include "stdlib.h"
-
-#include <stdio.h>
+#include <fcntl.h>
 
 int	deal_key(int key, void *param)
 {
@@ -58,7 +57,7 @@ int	deal_mouse(int button, int x, int y, void* param)
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -66,7 +65,14 @@ int	main(void)
 	t_mlxwin_ptr *mlxwin;
 	t_fdf_param *param;
 	t_img	*img;
+	t_map	*map;
+	int		fd;
 
+	if (argc != 2)
+		return (0);
+	fd = open(argv[1], O_RDONLY);
+	map = fdf_read_map(fd);
+	fdf_debug_print_map(map);
 	ft_printf("Ouverture d'une fenetre\n");
 	mlx_ptr = mlx_init();
 	if (!(param = (t_fdf_param *)malloc(sizeof(t_fdf_param))))
