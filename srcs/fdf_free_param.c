@@ -6,13 +6,12 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 16:07:30 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 18:02:54 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 18:47:04 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdlib.h>
-#include "libft.h"
 
 int		fdf_free_param(t_fdf_param **param, int map, int img, int cossin)
 {

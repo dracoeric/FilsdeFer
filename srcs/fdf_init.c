@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:36:15 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 17:47:22 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 18:50:59 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static	int		fdf_init_img(t_fdf_param *param)
 {
 	t_img	*img;
 
-	if (!(img = mlx_img_create(param->mlx_ptr, PIX_WIDTH, 150)))
+	if (!(img = mlx_img_create(param->mlx_ptr, PIX_WIDTH, LETTERBOX_HEIGHT)))
 		return (0);
 	param->img_top = img;
-	if (!(img = mlx_img_create(param->mlx_ptr, PIX_WIDTH, 150)))
+	if (!(img = mlx_img_create(param->mlx_ptr, PIX_WIDTH, LETTERBOX_HEIGHT)))
 		return (fdf_free_param(&param, 1, 10, 0));
 	param->img_bot = img;
 	if (!(img = mlx_img_create(param->mlx_ptr, PIX_WIDTH, PIX_HEIGHT)))
@@ -85,7 +85,7 @@ t_fdf_param		*fdf_init(int fd)
 	if (!(mlx_ptr = mlx_init()))
 		return (0);
 	if (!(win_ptr = mlx_new_window(mlx_ptr, PIX_WIDTH,
-		PIX_HEIGHT + 300, "FdF")))
+		PIX_HEIGHT + 2 * LETTERBOX_HEIGHT, "FdF")))
 		return (0);
 	if (!(param = (t_fdf_param *)malloc(sizeof(t_fdf_param))))
 		return (0);

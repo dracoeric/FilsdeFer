@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 11:56:03 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 17:36:52 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 18:19:38 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void					mlx_line_put(t_mlxwin_ptr *mlxwin, t_pixcoord *q,
 void					mlx_line_put_img(t_img *img, t_pixcoord *q,
 							t_pixcoord *b, t_colour (*f)(int));
 t_colour				mlx_colourgiver_uni(int z);
+t_colour				mlx_str_to_colour(char *str);
 t_pixcoord				*mlx_iso_proj(t_mapcoord *mapcoord);
 t_pixcoord				*mlx_para_proj(t_mapcoord *mapcoord);
 #endif

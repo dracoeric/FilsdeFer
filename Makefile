@@ -6,7 +6,7 @@
 #    By: erli <erli@42.fr>                          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/30 10:43:47 by erli              #+#    #+#              #
-#    Updated: 2018/12/01 17:29:43 by erli             ###   ########.fr        #
+#    Updated: 2018/12/01 18:52:44 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -18,9 +18,10 @@ OBJSDIR			=	objs
 
 SRCS			=	main.c				mlx_line_put.c		mlx_colourgiver_uni.c	\
 					mlx_line_put_img.c	mlx_pixel_put_img.c	mlx_img_create.c		\
-					mlx_iso_proj.c		mlx_para_proj.c		fdf_debug_print_map.c	\
+					mlx_iso_proj.c		mlx_para_proj.c		mlx_str_to_colour.c		\
+															fdf_debug_print_map.c	\
 					fdf_read_map.c		fdf_free_map.c		fdf_debug_print_param.c	\
-					fdf_init.c			fdf_free_param.c
+					fdf_init.c			fdf_free_param.c	fdf_init_display.c
 
 OBJS			=	$(addprefix $(OBJSDIR)/,$(SRCS:.c=.o))
 
@@ -43,10 +44,10 @@ LIBMLX			=	minilibx_macos/libmlx.a
 
 all				:	$(NAME)
 
-$(NAME)			:	$(LIBFT) $(LIBMLX) $(OBJS) includes/fdf.h
+$(NAME)			:	$(LIBFT) $(LIBMLX) $(OBJS) includes/fdf.h includes/mlxadd.h
 					$(CC) $(CFLAGS) $(INCL) $(LIB) -o $(NAME) $(OBJS) $(FRAMEWORK)
 
-$(OBJSDIR)/%.o	:	$(SRCSDIR)/%.c 
+$(OBJSDIR)/%.o	:	$(SRCSDIR)/%.c includes/fdf.h includes/mlxadd.h
 					@mkdir -p $(OBJSDIR)
 					$(CC) -c $(CFLAGS) $(INCL) -o $@ $<
 

@@ -6,12 +6,11 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 09:27:50 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 15:29:25 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 18:48:04 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlxadd.h"
-#include "libft.h"
 
 void	mlx_pixel_put_img(t_img *img, int x, int y, t_colour colour)
 {

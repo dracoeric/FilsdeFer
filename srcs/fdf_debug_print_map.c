@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 13:42:13 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 15:28:53 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 18:46:24 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	fdf_debug_print_map(t_map *map)
 		ft_printf("void map\n");
 	else
 	{
-		ft_printf("ici\n");
 		bubble = map;
 		while (bubble != 0)
 		{

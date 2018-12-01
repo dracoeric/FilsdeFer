@@ -6,41 +6,13 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 11:47:40 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 17:05:43 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 18:26:31 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 #include <stdlib.h>
-
-static	t_colour	fdf_str_to_colour(char *data)
-{
-	t_colour	colour;
-	int			i;
-	int			hex;
-	int			len;
-
-	colour = 0;
-	i = 4;
-	len = ft_strlen(data);
-	hex = 0;
-	data[10] = '\0';
-	if ((len < 10) || (len > 10 && data[len] != '\n'))
-		return (0);
-	if (ft_strncmp(data, "0x00", 4) == 0)
-	{
-		while (i < 10 && hex >= 0)
-		{
-			hex = ft_char_at_pos(data[i], "0123456789abcdef");
-			colour = colour * 16 + hex;
-			i++;
-		}
-		if (!(i == 10 && hex >= 0))
-			return (0);
-	}
-	return (colour);
-}
 
 static	t_map		*fdf_create_map_point(char *data, int x, int y)
 {
@@ -65,7 +37,7 @@ static	t_map		*fdf_create_map_point(char *data, int x, int y)
 	if ((ptr = ft_strchr(data, ',')))
 		*(ptr++) = '\0';
 	coord->mz = ft_atoi(data);
-	colour = (ptr == 0 ? 0 : fdf_str_to_colour(ptr));
+	colour = (ptr == 0 ? 0 : mlx_str_to_colour(ptr));
 	elem->colour = colour;
 	return (elem);
 }

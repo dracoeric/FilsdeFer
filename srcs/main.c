@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 11:05:44 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 17:59:57 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 18:45:56 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int argc, char **argv)
 	ft_printf("Ouverture d'une fenetre\n");
 	if (!(param = fdf_init(fd)))
 		return (0);
-	fdf_debug_print_param(param);
+	fdf_init_display(param);
 	mlx_key_hook(param->win_ptr, &deal_key, param);
 	mlx_mouse_hook(param->win_ptr, &deal_mouse, param);
 	mlx_loop(param->mlx_ptr);

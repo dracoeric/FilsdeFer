@@ -6,13 +6,12 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:18:54 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 17:59:23 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 18:46:56 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdlib.h>
-#include "libft.h"
 
 int		fdf_free_map(t_map **map)
 {

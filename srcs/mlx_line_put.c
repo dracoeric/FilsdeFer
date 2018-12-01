@@ -6,12 +6,11 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 16:33:10 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 10:33:13 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 18:47:42 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlxadd.h"
-#include "libft.h"
 
 static	void	draw_line_case1(t_mlxwin_ptr *mlxwin, t_pixcoord *a,
 					t_pixcoord *b, t_colour (*f)(int))
