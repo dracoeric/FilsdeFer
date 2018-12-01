@@ -6,18 +6,26 @@
 /*   By: erli <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 10:12:18 by erli              #+#    #+#             */
-/*   Updated: 2018/11/08 10:52:30 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 14:11:53 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
-void	ft_charatpos(unsigned int i, char *str)
+int	ft_char_at_pos(char c, char *str)
 {
-	write(1, "char '", 6);
-	write(1, str, 1);
-	write(1, "' at position ", 14);
-	ft_putnbr((int)(i));
-	write(1, "\n", 1);
+	int i;
+
+	if (str == NULL)
+		return (-1);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (c == str[i])
+			return (i);
+		i++;
+	}
+	if (c == '\0')
+		return (i);
+	return (-1);
 }

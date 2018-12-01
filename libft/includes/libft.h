@@ -6,7 +6,7 @@
 /*   By: erli <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 11:08:07 by erli              #+#    #+#             */
-/*   Updated: 2018/11/29 14:07:35 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 14:11:37 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct	s_conv
 }				t_conv;
 
 int				ft_atoi(const char *str);
-void			ft_charatpos(unsigned int i, char *str);
+int				ft_char_at_pos(char c, char *str);
 int				ft_char_in_str(char c, char *str);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
