@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 11:05:44 by erli              #+#    #+#             */
-/*   Updated: 2018/11/30 18:24:21 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 10:16:49 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ int	deal_mouse(int button, int x, int y, void* param)
 		b->py = y;
 		b->pz = 0;
 		ft_printf("click with button %d, at (%d, %d)\n", button, x, y);
-		mlx_line_put(params->mlxwin, a, b, &mlx_colourgiver_uni);
+		mlx_line_put_img(params->img, a, b, &mlx_colourgiver_uni);
+		mlx_put_image_to_window(params->mlxwin->mlx_ptr, params->mlxwin->win_ptr,
+			params->img->ptr, 0, 0);
 	}
 	return (0);
 }
@@ -63,6 +65,7 @@ int	main(void)
 	t_pixcoord *coord;
 	t_mlxwin_ptr *mlxwin;
 	t_fdf_param *param;
+	t_img	*img;
 
 	ft_printf("Ouverture d'une fenetre\n");
 	mlx_ptr = mlx_init();
@@ -80,6 +83,8 @@ int	main(void)
 	mlxwin->mlx_ptr = mlx_ptr;
 	mlxwin->win_ptr = win_ptr;
 	param->mlxwin = mlxwin;
+	img = mlx_img_create(mlx_ptr, 500, 500);
+	param->img = img;
 	mlx_key_hook(win_ptr, &deal_key, (void *)0);
 	mlx_mouse_hook(win_ptr, &deal_mouse, param);
 	mlx_loop(mlx_ptr);

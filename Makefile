@@ -6,7 +6,7 @@
 #    By: erli <erli@42.fr>                          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/30 10:43:47 by erli              #+#    #+#              #
-#    Updated: 2018/11/30 17:56:54 by erli             ###   ########.fr        #
+#    Updated: 2018/12/01 10:14:12 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,7 +16,8 @@ SRCSDIR			=	srcs
 
 OBJSDIR			=	objs
 
-SRCS			=	main.c				mlx_line_put.c		mlx_colourgiver_uni.c
+SRCS			=	main.c				mlx_line_put.c		mlx_colourgiver_uni.c	\
+					mlx_line_put_img.c	mlx_pixel_put_img.c	mlx_img_create.c		
 
 OBJS			=	$(addprefix $(OBJSDIR)/,$(SRCS:.c=.o))
 

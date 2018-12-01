@@ -6,15 +6,14 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 16:33:10 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 10:33:13 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 10:17:27 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlxadd.h"
-#include "libft.h"
 
-static	void	draw_line_case1(t_mlxwin_ptr *mlxwin, t_pixcoord *a,
-					t_pixcoord *b, t_colour (*f)(int))
+static	void	draw_line_case1(t_img *img, t_pixcoord *a,
+			t_pixcoord *b, t_colour (*f)(int))
 {
 	int x;
 	int x_diff;
@@ -37,13 +36,13 @@ static	void	draw_line_case1(t_mlxwin_ptr *mlxwin, t_pixcoord *a,
 			z = a->pz;
 			y = a->py;
 		}
-		mlx_pixel_put(mlxwin->mlx_ptr, mlxwin->win_ptr, x, y, f(z));
+		mlx_pixel_put_img(img, x, y, f(z));
 		x++;
 	}
 }
 
-static	void	draw_line_case2(t_mlxwin_ptr *mlxwin, t_pixcoord *a,
-					t_pixcoord *b, t_colour (*f)(int))
+static	void	draw_line_case2(t_img *img, t_pixcoord *a,
+			t_pixcoord *b, t_colour (*f)(int))
 {
 	int x;
 	int y_diff;
@@ -58,13 +57,13 @@ static	void	draw_line_case2(t_mlxwin_ptr *mlxwin, t_pixcoord *a,
 		y_pro = y - a->py;
 		z = a->pz + y_pro * (b->pz - a->pz) / y_diff;
 		x = a->px + y_pro * (b->px - a->px) / y_diff;
-		mlx_pixel_put(mlxwin->mlx_ptr, mlxwin->win_ptr, x, y, f(z));
+		mlx_pixel_put_img(img, x, y, f(z));
 		y++;
 	}
 }
 
-void			mlx_line_put(t_mlxwin_ptr *mlxwin, t_pixcoord *a,
-					t_pixcoord *b, t_colour (*f)(int))
+void			mlx_line_put_img(t_img *img, t_pixcoord *a,
+			t_pixcoord *b, t_colour (*f)(int))
 {
 	int	y_diff;
 	int x_diff;
@@ -74,11 +73,11 @@ void			mlx_line_put(t_mlxwin_ptr *mlxwin, t_pixcoord *a,
 	y_diff = b->py - a->py;
 	x_diff = b->px - a->px;
 	if (x_diff >= 0 && x_diff >= (y_diff < 0 ? -y_diff : y_diff))
-		draw_line_case1(mlxwin, a, b, f);
+		draw_line_case1(img, a, b, f);
 	else if (x_diff < 0 && -x_diff >= (y_diff < 0 ? -y_diff : y_diff))
-		draw_line_case1(mlxwin, b, a, f);
+		draw_line_case1(img, b, a, f);
 	else if (y_diff > 0 && y_diff >= (x_diff < 0 ? -x_diff : x_diff))
-		draw_line_case2(mlxwin, a, b, f);
+		draw_line_case2(img, a, b, f);
 	else
-		draw_line_case2(mlxwin, b, a, f);
+		draw_line_case2(img, b, a, f);
 }
