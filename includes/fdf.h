@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 11:06:03 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 18:57:52 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 19:11:11 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define COEF_ALT_DEFAULT 10
 # define LETTERBOX_HEIGHT 100
 # define LETTERBOX_COLOUR "0x00a0a020"
+# define TEXT_COLOUR "0x00ff1d8e"
 # define KEY_ESC 53
 
 typedef	struct		s_map
@@ -60,7 +61,7 @@ int					fdf_free_map(t_map **map);
 int					fdf_free_param(t_fdf_param **param, int map, int img,
 						int cossin);
 t_fdf_param			*fdf_init(int fd);
-void				fdf_init_display(t_fdf_param *param);
+void				fdf_init_display(t_fdf_param *param, char *filename);
 t_map				*fdf_read_map(t_fdf_param *param, int fd);
 void				fdf_debug_print_map(t_map *map);
 void				fdf_debug_print_param(t_fdf_param *param);
