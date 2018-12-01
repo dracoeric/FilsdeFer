@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 11:47:40 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 15:01:31 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 17:05:43 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static	t_colour	fdf_str_to_colour(char *data)
 {
 	t_colour	colour;
 	int			i;
-	int			hex;	
+	int			hex;
 	int			len;
 
 	colour = 0;
@@ -90,7 +90,8 @@ static	void		fdf_map_add_front(t_map **map, t_map *elem, int *first)
 	}
 }
 
-static	void		fdf_add_to_map(t_map **map, char **split, int y)
+static	int			fdf_add_to_map(t_fdf_param *param, t_map **map,
+						char **split, int y)
 {
 	static	t_map	*bubble = 0;
 	int				x;
@@ -102,7 +103,8 @@ static	void		fdf_add_to_map(t_map **map, char **split, int y)
 	first = 1;
 	while (split[x] != 0)
 	{
-		elem = fdf_create_map_point(split[x], x, y);
+		if (!(elem = fdf_create_map_point(split[x], x, y)))
+			return (fdf_free_map(map));
 		if (first == 1)
 			first_of_line = elem;
 		fdf_map_add_front(map, elem, &first);
@@ -113,10 +115,12 @@ static	void		fdf_add_to_map(t_map **map, char **split, int y)
 		}
 		x++;
 	}
+	param->map_width = x;
 	bubble = first_of_line;
+	return (1);
 }
 
-t_map				*fdf_read_map(int fd)
+t_map				*fdf_read_map(t_fdf_param *param, int fd)
 {
 	char	*line;
 	t_map	*map;
@@ -130,9 +134,14 @@ t_map				*fdf_read_map(int fd)
 	{
 		split = ft_strsplit(line, 32);
 		free(line);
-		fdf_add_to_map(&map, split, y);
+		if (fdf_add_to_map(param, &map, split, y) == -1)
+		{
+			free(split);
+			return (0);
+		}
 		free(split);
 		y++;
 	}
+	param->map_height = y;
 	return (map);
 }

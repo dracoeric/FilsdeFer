@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_debug_print_map.c                              :+:      :+:    :+:   */
+/*   fdf_free_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 13:42:13 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 15:28:53 by erli             ###   ########.fr       */
+/*   Created: 2018/12/01 15:18:54 by erli              #+#    #+#             */
+/*   Updated: 2018/12/01 17:59:23 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdlib.h>
 #include "libft.h"
 
-void	fdf_debug_print_map(t_map *map)
+int		fdf_free_map(t_map **map)
 {
-	t_map *bubble;
+	t_map	*bubble;
+	t_map	*prev;
 
 	if (map == 0)
-		ft_printf("void map\n");
-	else
+		return (-1);
+	bubble = *map;
+	while (bubble != 0)
 	{
-		ft_printf("ici\n");
-		bubble = map;
-		while (bubble != 0)
-		{
-			ft_printf("bubble '%p', right = '%p', (%d, %d, %d),color = %#x\n",
-				bubble, bubble->right, bubble->coord->mx,
-				bubble->coord->my, bubble->coord->mz, bubble->colour);
-			bubble = bubble->next;
-		}
+		prev = bubble;
+		bubble = bubble->next;
+		free(prev->coord);
+		free(prev);
 	}
+	*map = 0;
+	return (-1);
 }

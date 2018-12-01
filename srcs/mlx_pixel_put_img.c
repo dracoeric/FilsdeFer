@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 09:27:50 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 11:20:13 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 15:29:25 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	mlx_pixel_put_img(t_img *img, int x, int y, t_colour colour)
 {
 	int		i;
 	int		*int_ptr;
+
 	if (img == 0)
 		return ;
 	i = x * (img->bypp) + y * img->size_line;

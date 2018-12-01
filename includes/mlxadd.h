@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 11:56:03 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 11:42:52 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/01 17:36:52 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define ISO_COEFF2 500
 # define PARA_COEFF 250
 
-#include "mlx.h"
+# include "mlx.h"
 
 typedef	unsigned int	t_colour;
 
@@ -51,9 +51,6 @@ typedef	struct			s_mlxwin_ptr
 	void	*mlx_ptr;
 	void	*win_ptr;
 }						t_mlxwin_ptr;
-
-typedef	t_colour		(*t_colourgiver)(int);
-typedef	t_pixcoord		(*t_projector)(t_mapcoord);
 
 t_img					*mlx_img_create(void *mlx_ptr, int width, int height);
 void					mlx_pixel_put_img(t_img *img, int x, int y,
