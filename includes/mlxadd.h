@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 11:56:03 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 18:19:38 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/02 17:07:21 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define ISO_COEFF1 500
 # define ISO_COEFF2 500
-# define PARA_COEFF 250
+# define PARA_COEFF 500
 
 # include "mlx.h"
 

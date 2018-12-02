@@ -6,13 +6,23 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:36:15 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 18:50:59 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/02 17:15:44 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
 #include <stdlib.h>
+
+static	int		fdf_init_euler(t_fdf_param *param)
+{
+	int	**mat;
+
+	if (!(mat = fdf_make_euler_mat(param)))
+		return (fdf_free_param(&param, 1, 111, 11));
+	param->euler = mat;
+	return (1);
+}
 
 static	int		fdf_init_img(t_fdf_param *param)
 {
@@ -35,16 +45,16 @@ static	void	fdf_init_others(t_fdf_param *param)
 	int		zoom1;
 	int		zoom2;
 
-	param->coef_alt = COEF_ALT_DEFAULT;
+	param->coef_alt = DEFAULT_COEF_ALT;
 	zoom1 = PIX_WIDTH / param->map_width * 8 / 10;
 	zoom2 = PIX_HEIGHT / param->map_height * 8 / 10;
 	param->zoom = (zoom1 < zoom2 ? zoom1 : zoom2);
-	param->rotx = 0;
-	param->roty = 0;
-	param->rotz = 0;
-	param->trx = 0;
-	param->try = 0;
-	param->trz = 0;
+	param->phi = DEFAULT_PHI;
+	param->theta = DEFAULT_THETA;
+	param->psi = DEFAULT_PSI;
+	param->trx = (PIX_WIDTH - param->zoom * param->map_width) / 2;
+	param->try = (PIX_HEIGHT - param->zoom * param->map_height) / 2;
+	param->trz = DEFAULT_TRZ;
 	param->cg = &mlx_colourgiver_uni;
 	param->proj = &mlx_para_proj;
 }
@@ -99,5 +109,7 @@ t_fdf_param		*fdf_init(int fd)
 	if (fdf_init_cossin(param) == -1)
 		return (0);
 	fdf_init_others(param);
+	if (fdf_init_euler(param) == -1)
+		return (0);
 	return (param);
 }

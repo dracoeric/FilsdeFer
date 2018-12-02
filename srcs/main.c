@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 11:05:44 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 19:10:54 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/02 15:54:51 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	deal_key(int key, void *param)
 	if (key == 53)
 	{
 		ft_printf("Appuie sur ESC, fermeture\n");
-		fdf_free_param(&params, 1, 111, 11);
+		fdf_free_param(&params, 1, 111, 111);
 		exit(0);
 	}
 	return (0);
@@ -63,6 +63,7 @@ int	main(int argc, char **argv)
 	if (!(param = fdf_init(fd)))
 		return (0);
 	fdf_init_display(param, argv[1]);
+	fdf_draw_map(param);
 	mlx_key_hook(param->win_ptr, &deal_key, param);
 	mlx_mouse_hook(param->win_ptr, &deal_mouse, param);
 	mlx_loop(param->mlx_ptr);

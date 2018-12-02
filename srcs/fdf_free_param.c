@@ -6,11 +6,12 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 16:07:30 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 18:47:04 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/02 14:51:28 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft.h"
 #include <stdlib.h>
 
 int		fdf_free_param(t_fdf_param **param, int map, int img, int cossin)
@@ -36,6 +37,8 @@ int		fdf_free_param(t_fdf_param **param, int map, int img, int cossin)
 		free((*param)->cos);
 	if (cossin / 10 == 1)
 		free((*param)->sin);
+	if (cossin / 100 == 1)
+		ft_free_mat_int((*param)->euler, 3);
 	free(*param);
 	return (-1);
 }
