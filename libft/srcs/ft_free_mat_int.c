@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_charatpos.c                                     :+:      :+:    :+:   */
+/*   ft_free_mat.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erli <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 10:12:18 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 14:10:27 by erli             ###   ########.fr       */
+/*   Created: 2018/12/02 14:18:11 by erli              #+#    #+#             */
+/*   Updated: 2018/12/02 14:21:55 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-int	ft_char_at_pos(char c, char *str)
+void	ft_free_mat_int(int	**mat, int row)
 {
 	int i;
 
-	if (str == NULL)
-		return (-1);
 	i = 0;
-	while (str[i] != '\0')
+	if (mat == NULL)
+		return ;
+	while (i < row)
 	{
-		if (c == str[i])
-			return (i);
+		free(mat[i]);
 		i++;
 	}
-	if (c == '\0')
-		return (i);
-	return (-1);
+	free(mat);
 }
