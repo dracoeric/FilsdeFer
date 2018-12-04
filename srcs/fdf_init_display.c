@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 18:14:50 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 19:25:47 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/04 12:57:34 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static	void	put_to_win(t_fdf_param *param, char *filename)
 	put_instructions(param);
 }
 
-void	fdf_init_display(t_fdf_param *param, char *filename)
+void			fdf_init_display(t_fdf_param *param, char *filename)
 {
 	t_colour	colour;
 	int			i;
@@ -57,7 +57,7 @@ void	fdf_init_display(t_fdf_param *param, char *filename)
 	t_colour	*tabbot;
 	int			len;
 
-	colour =  mlx_str_to_colour(LETTERBOX_COLOUR);
+	colour = mlx_str_to_colour(LETTERBOX_COLOUR);
 	i = 0;
 	tabtop = (t_colour *)param->img_top->str;
 	tabbot = (t_colour *)param->img_bot->str;

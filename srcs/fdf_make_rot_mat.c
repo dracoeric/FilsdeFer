@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 13:41:50 by erli              #+#    #+#             */
-/*   Updated: 2018/12/04 11:36:44 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/04 12:35:32 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ int				**fdf_make_rot_mat(t_fdf_param *param)
 		i++;
 	}
 	fill_lines(mat, param);
-	ft_printf("matrice de rotation:%m4d", mat, 3, 3);
 	return (mat);
 }

@@ -6,26 +6,29 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 13:23:17 by erli              #+#    #+#             */
-/*   Updated: 2018/12/04 11:58:14 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/04 17:26:29 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdlib.h>
-#include "libft.h"
 
 static	t_mapcoord	*fdf_rotation(t_fdf_param *param, t_map *point)
 {
-	t_mapcoord *coord;
-	int x;
-	int y;
-	int z;
+	t_mapcoord	*coord;
+	int			x;
+	int			y;
+	int			z;
 
 	if (!(coord = (t_mapcoord *)malloc(sizeof(t_mapcoord))))
 		return (0);
 	x = point->coord->mx * param->zoom - param->map_width * param->zoom / 2;
 	y = point->coord->my * param->zoom - param->map_height * param->zoom / 2;
 	z = point->coord->mz * param->coef_alt;
+	if (z > param->max_z)
+		param->max_z = coord->mz;
+	if (z < param->min_z)
+		param->min_z = coord->mz;
 	coord->mx = param->rot[0][0] * x + param->rot[0][1] * y;
 	coord->mx += param->rot[0][2] * z;
 	coord->my = param->rot[1][0] * x + param->rot[1][1] * y;
@@ -35,18 +38,14 @@ static	t_mapcoord	*fdf_rotation(t_fdf_param *param, t_map *point)
 	coord->mx = coord->mx / 1000 + param->map_width * param->zoom / 2;
 	coord->my = coord->my / 1000 + param->map_height * param->zoom / 2;
 	coord->mz = coord->mz / 1000;
-	if (coord->mz > param->max_z)
-		param->max_z = coord->mz;
-	if (coord->mz < param->min_z)
-		param->min_z = coord->mz;
 	return (coord);
 }
 
 static	t_pixcoord	*fdf_mcoord_to_pcoord(t_fdf_param *param, t_map *point)
 {
-	t_mapcoord *tmp;
-	t_pixcoord *pix;
- 
+	t_mapcoord	*tmp;
+	t_pixcoord	*pix;
+
 	if (param == 0 || point == 0)
 		return (0);
 	if (!(tmp = fdf_rotation(param, point)))
@@ -58,32 +57,35 @@ static	t_pixcoord	*fdf_mcoord_to_pcoord(t_fdf_param *param, t_map *point)
 	}
 	pix->px += param->trx;
 	pix->py += param->try;
-	pix->pz += param->trz;
+	pix->pz = point->coord->mz * param->coef_alt;
 	free(tmp);
 	return (pix);
 }
 
-void	fdf_draw_map(t_fdf_param *param)
+void				fdf_draw_map(t_fdf_param *param)
 {
-	t_map 		*bubble;
+	t_map		*bubble;
 	t_pixcoord	*a;
 	t_pixcoord	*b;
 
 	if (param == 0)
 		return ;
+	param->max_z = 0;
+	param->min_z = 0;
 	bubble = param->map;
 	while (bubble != 0)
 	{
 		a = fdf_mcoord_to_pcoord(param, bubble);
 		b = fdf_mcoord_to_pcoord(param, bubble->right);
-		mlx_line_put_img(param->img, a, b, param->cg);
+		fdf_line_put_img(param, a, b, param->cg);
 		free(b);
 		b = fdf_mcoord_to_pcoord(param, bubble->bot);
-		mlx_line_put_img(param->img, a, b, param->cg);
+		fdf_line_put_img(param, a, b, param->cg);
 		free(b);
 		free(a);
 		bubble = bubble->next;
 	}
 	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr,
 		param->img->ptr, 0, LETTERBOX_HEIGHT);
+	fdf_debug_print_param(param);
 }

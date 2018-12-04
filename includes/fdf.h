@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 11:06:03 by erli              #+#    #+#             */
-/*   Updated: 2018/12/04 11:54:54 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/04 16:29:02 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define DEFAULT_ROTY 10
 # define DEFAULT_ROTZ 40
 # define DEFAULT_TRZ -100
+# define DEFAULT_TOP_COLOUR "0x00ff0000"
+# define DEFAULT_BOT_COLOUR "0x000000ff"
 
 typedef	struct		s_map
 {
@@ -57,7 +59,9 @@ typedef	struct		s_fdf_param
 	int				*cos;
 	int				*sin;
 	int				**rot;
-	t_colour		(*cg)(int);
+	t_colour		colour_bot;
+	t_colour		colour_top;
+	t_colour		(*cg)(struct s_fdf_param *, int);
 	t_pixcoord		*(*proj)(t_mapcoord *);
 	t_img			*img;
 	t_img			*img_top;
@@ -74,5 +78,10 @@ t_map				*fdf_read_map(t_fdf_param *param, int fd);
 void				fdf_debug_print_map(t_map *map);
 void				fdf_debug_print_param(t_fdf_param *param);
 void				fdf_draw_map(t_fdf_param *param);
+void				fdf_redraw(t_fdf_param *param);
+t_colour			fdf_gradiant(t_fdf_param *param, int z);
+t_colour			fdf_uni_grad(t_fdf_param *param, int z);
+void				fdf_line_put_img(t_fdf_param *param, t_pixcoord *a,
+						t_pixcoord *b, t_colour (*f)(t_fdf_param *, int));
 
 #endif

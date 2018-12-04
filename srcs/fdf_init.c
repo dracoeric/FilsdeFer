@@ -1,4 +1,4 @@
-/**************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   fdf_init.c                                         :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:36:15 by erli              #+#    #+#             */
-/*   Updated: 2018/12/04 11:55:29 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/04 14:33:51 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ static	void	fdf_init_others(t_fdf_param *param)
 	param->trx = (PIX_WIDTH - param->zoom * param->map_width) / 2;
 	param->try = (PIX_HEIGHT - param->zoom * param->map_height) / 2;
 	param->trz = DEFAULT_TRZ;
-	param->cg = &mlx_colourgiver_uni;
+	param->colour_top = mlx_str_to_colour(DEFAULT_TOP_COLOUR);
+	param->colour_bot = mlx_str_to_colour(DEFAULT_BOT_COLOUR);
+	param->cg = &fdf_uni_grad;
 	param->proj = &mlx_para_proj;
 }
 
