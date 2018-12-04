@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 13:23:17 by erli              #+#    #+#             */
-/*   Updated: 2018/12/02 17:13:01 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/04 11:58:14 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,31 @@
 #include <stdlib.h>
 #include "libft.h"
 
-static	t_mapcoord	*fdf_euler_rotation(t_fdf_param *param, t_map *point)
+static	t_mapcoord	*fdf_rotation(t_fdf_param *param, t_map *point)
 {
 	t_mapcoord *coord;
-	t_mapcoord *origin;
+	int x;
+	int y;
+	int z;
 
 	if (!(coord = (t_mapcoord *)malloc(sizeof(t_mapcoord))))
 		return (0);
-	origin = point->coord;
-	coord->mx = param->euler[0][0] * (origin->mx - (param->map_width / 2));
-	coord->mx += param->euler[0][1] * (origin->my - (param->map_height / 2));
-	coord->mx += param->euler[0][2] * origin->mz;
-	coord->my = param->euler[1][0] * (origin->mx - (param->map_width / 2));
-	coord->my += param->euler[1][1] * (origin->my - (param->map_height / 2));
-	coord->my += param->euler[1][2] * origin->mz;
-	coord->mz = param->euler[2][0] * (origin->mx - (param->map_width / 2));
-	coord->mz += param->euler[2][1] * (origin->my - (param->map_height / 2));
-	coord->mz += param->euler[2][2] * origin->mz;
-	coord->mx = (coord->mx / 1000 + (param->map_width / 2)) * param->zoom;
-	coord->my = (coord->my / 1000 + (param->map_height / 2)) * param->zoom;
-	coord->mz = (coord->mz / 1000) * param->zoom;
+	x = point->coord->mx * param->zoom - param->map_width * param->zoom / 2;
+	y = point->coord->my * param->zoom - param->map_height * param->zoom / 2;
+	z = point->coord->mz * param->coef_alt;
+	coord->mx = param->rot[0][0] * x + param->rot[0][1] * y;
+	coord->mx += param->rot[0][2] * z;
+	coord->my = param->rot[1][0] * x + param->rot[1][1] * y;
+	coord->my += param->rot[1][2] * z;
+	coord->mz = param->rot[2][0] * x + param->rot[2][1] * y;
+	coord->mz += param->rot[2][2] * z;
+	coord->mx = coord->mx / 1000 + param->map_width * param->zoom / 2;
+	coord->my = coord->my / 1000 + param->map_height * param->zoom / 2;
+	coord->mz = coord->mz / 1000;
+	if (coord->mz > param->max_z)
+		param->max_z = coord->mz;
+	if (coord->mz < param->min_z)
+		param->min_z = coord->mz;
 	return (coord);
 }
 
@@ -44,7 +49,7 @@ static	t_pixcoord	*fdf_mcoord_to_pcoord(t_fdf_param *param, t_map *point)
  
 	if (param == 0 || point == 0)
 		return (0);
-	if (!(tmp = fdf_euler_rotation(param, point)))
+	if (!(tmp = fdf_rotation(param, point)))
 		return (0);
 	if (!(pix = param->proj(tmp)))
 	{

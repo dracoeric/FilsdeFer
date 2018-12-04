@@ -6,7 +6,7 @@
 #    By: erli <erli@42.fr>                          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/30 10:43:47 by erli              #+#    #+#              #
-#    Updated: 2018/12/02 15:53:08 by erli             ###   ########.fr        #
+#    Updated: 2018/12/04 10:57:28 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -22,7 +22,7 @@ SRCS			=	main.c				mlx_line_put.c		mlx_colourgiver_uni.c	\
 															fdf_debug_print_map.c	\
 					fdf_read_map.c		fdf_free_map.c		fdf_debug_print_param.c	\
 					fdf_init.c			fdf_free_param.c	fdf_init_display.c		\
-					fdf_draw_map.c							fdf_make_euler_mat.c
+					fdf_draw_map.c							fdf_make_rot_mat.c
 
 OBJS			=	$(addprefix $(OBJSDIR)/,$(SRCS:.c=.o))
 

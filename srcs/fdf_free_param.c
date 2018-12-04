@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 16:07:30 by erli              #+#    #+#             */
-/*   Updated: 2018/12/02 14:51:28 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/04 10:55:52 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		fdf_free_param(t_fdf_param **param, int map, int img, int cossin)
 	if (cossin / 10 == 1)
 		free((*param)->sin);
 	if (cossin / 100 == 1)
-		ft_free_mat_int((*param)->euler, 3);
+		ft_free_mat_int((*param)->rot, 3);
 	free(*param);
 	return (-1);
 }

@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/**************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   fdf_init.c                                         :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:36:15 by erli              #+#    #+#             */
-/*   Updated: 2018/12/02 17:15:44 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/04 11:55:29 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include <math.h>
 #include <stdlib.h>
 
-static	int		fdf_init_euler(t_fdf_param *param)
+static	int		fdf_init_rot(t_fdf_param *param)
 {
 	int	**mat;
 
-	if (!(mat = fdf_make_euler_mat(param)))
+	if (!(mat = fdf_make_rot_mat(param)))
 		return (fdf_free_param(&param, 1, 111, 11));
-	param->euler = mat;
+	param->rot = mat;
 	return (1);
 }
 
@@ -49,9 +49,17 @@ static	void	fdf_init_others(t_fdf_param *param)
 	zoom1 = PIX_WIDTH / param->map_width * 8 / 10;
 	zoom2 = PIX_HEIGHT / param->map_height * 8 / 10;
 	param->zoom = (zoom1 < zoom2 ? zoom1 : zoom2);
-	param->phi = DEFAULT_PHI;
-	param->theta = DEFAULT_THETA;
-	param->psi = DEFAULT_PSI;
+	param->max_z = 0;
+	param->min_z = 0;
+	param->rotx = DEFAULT_ROTX % 360;
+	while (param->rotx < 0)
+		param->rotx += 360;
+	param->roty = DEFAULT_ROTY % 360;
+	while (param->roty < 0)
+		param->roty += 360;
+	param->rotz = DEFAULT_ROTZ % 360;
+	while (param->rotz < 0)
+		param->rotz += 360;
 	param->trx = (PIX_WIDTH - param->zoom * param->map_width) / 2;
 	param->try = (PIX_HEIGHT - param->zoom * param->map_height) / 2;
 	param->trz = DEFAULT_TRZ;
@@ -109,7 +117,7 @@ t_fdf_param		*fdf_init(int fd)
 	if (fdf_init_cossin(param) == -1)
 		return (0);
 	fdf_init_others(param);
-	if (fdf_init_euler(param) == -1)
+	if (fdf_init_rot(param) == -1)
 		return (0);
 	return (param);
 }
