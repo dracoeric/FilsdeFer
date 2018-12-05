@@ -6,12 +6,13 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 13:23:17 by erli              #+#    #+#             */
-/*   Updated: 2018/12/05 13:57:58 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/05 14:57:46 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdlib.h>
+#include "libft.h"
 
 static	t_mapcoord	*fdf_rotation(t_fdf_param *param, t_map *point)
 {
@@ -49,7 +50,11 @@ static	t_pixcoord	*fdf_mcoord_to_pcoord(t_fdf_param *param, t_map *point)
 	if (param == 0 || point == 0)
 		return (0);
 	if (!(tmp = fdf_rotation(param, point)))
-		return (0);
+	{
+		fdf_free_param(&param, 1, 111, 111);
+		ft_printf("Echec d'allocation memoire\n");
+		exit(0);
+	}
 	if (!(pix = param->proj(tmp)))
 	{
 		free(tmp);
@@ -87,5 +92,6 @@ void				fdf_draw_map(t_fdf_param *param)
 	}
 	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr,
 		param->img->ptr, 0, LETTERBOX_HEIGHT);
+	fdf_debug_print_map(param->map);
 	fdf_debug_print_param(param);
 }

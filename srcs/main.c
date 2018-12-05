@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 11:05:44 by erli              #+#    #+#             */
-/*   Updated: 2018/12/05 14:19:35 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/05 15:49:32 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,6 @@ int	main(int argc, char **argv)
 	fdf_draw_map(param);
 	mlx_key_hook(param->win_ptr, &deal_key, param);
 	mlx_mouse_hook(param->win_ptr, &deal_mouse, param);
-	mlx_loop(param->mlx_ptr);	
+	mlx_loop(param->mlx_ptr);
 	return (0);
 }

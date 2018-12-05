@@ -6,7 +6,7 @@
 /*   By: erli <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 13:29:01 by erli              #+#    #+#             */
-/*   Updated: 2018/11/09 13:41:05 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/05 15:47:20 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ char			**ft_strsplit(const char *src, char c)
 	i = fill_words(src, c, words_len, split);
 	if (i == 0)
 		return (NULL);
+	free(words_len);
 	split[n_words] = 0;
 	return (split);
 }

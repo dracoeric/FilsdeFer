@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 11:47:40 by erli              #+#    #+#             */
-/*   Updated: 2018/12/05 14:29:35 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/05 15:42:45 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,21 +114,24 @@ t_map				*fdf_read_map(t_fdf_param *param, int fd)
 	t_map	*map;
 	char	**split;
 	int		y;
+	int		x_max;
 
 	line = 0;
 	y = 0;
 	map = 0;
 	while (get_next_line(fd, &line) == 1)
 	{
+		x_max = 0;
 		split = ft_strsplit(line, 32);
 		free(line);
-		if (fdf_add_to_map(param, &map, split, y) == -1)
+		while (split[x_max] != 0)
+			x_max++;
+		if (!split || fdf_add_to_map(param, &map, split, y++) == -1)
 		{
-			free(split);
+			ft_free_mat_char(split, x_max);
 			return (0);
 		}
-		free(split);
-		y++;
+		ft_free_mat_char(split, x_max);
 	}
 	param->map_height = y;
 	return (map);
