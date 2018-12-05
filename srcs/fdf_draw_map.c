@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 13:23:17 by erli              #+#    #+#             */
-/*   Updated: 2018/12/05 14:57:46 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/05 15:53:32 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,4 @@ void				fdf_draw_map(t_fdf_param *param)
 	}
 	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr,
 		param->img->ptr, 0, LETTERBOX_HEIGHT);
-	fdf_debug_print_map(param->map);
-	fdf_debug_print_param(param);
 }
