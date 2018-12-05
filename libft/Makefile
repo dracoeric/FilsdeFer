@@ -6,7 +6,7 @@
 #    By: erli <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/14 17:45:59 by erli              #+#    #+#              #
-#    Updated: 2018/12/02 14:23:14 by erli             ###   ########.fr        #
+#    Updated: 2018/12/05 14:31:31 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -18,7 +18,7 @@ OBJSDIR		=		objs
 
 SRCS		=		ft_atoi.c			ft_char_at_pos.c	ft_itoa.c			\
 					ft_char_in_str.c	ft_free_mat_int.c	get_next_line.c		\
-					ft_tolower.c		ft_toupper.c							\
+					ft_tolower.c		ft_toupper.c		ft_free_mat_char.c	\
 					ft_isalpha.c		ft_isdigit.c		ft_isalnum.c		\
 					ft_isascii.c		ft_isprint.c		\
 																				\

@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 11:06:03 by erli              #+#    #+#             */
-/*   Updated: 2018/12/05 11:05:37 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/05 14:09:02 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "mlx.h"
 # include "mlxadd.h"
 
-# define PIX_WIDTH 2160
-# define PIX_HEIGHT 1440
+# define PIX_WIDTH 1080
+# define PIX_HEIGHT 720
 # define DEFAULT_COEF_ALT 5
 # define LETTERBOX_HEIGHT 100
 # define LETTERBOX_COLOUR "0x00a0a020"

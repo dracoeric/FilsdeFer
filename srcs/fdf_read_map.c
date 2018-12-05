@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 11:47:40 by erli              #+#    #+#             */
-/*   Updated: 2018/12/05 12:03:40 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/05 14:29:35 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ static	int			fdf_alter_z(char *data)
 	z = ft_atoi(data);
 	if (z <= -50 && z >= -20)
 		return (-20 + (z + 20) / 4);
-	else if (z > 25 && z <= 4050)
-		return (25 + (z - 25) / 200);
-	else if (z > 4050)
-		return (45 + (z - 4050) / 3000);
+	else if (z >= 3 && z <= 25)
+		return (3 + (z - 3) / 4);
+	else if (z > 25 && z <= 105)
+		return (7 + (z - 25) / 20);
+	else if (z > 105)
+		return (11 + (z - 105) / 50);
 	return (z);
 }
 

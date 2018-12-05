@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_pixel_put_img.c                                :+:      :+:    :+:   */
+/*   ft_free_mat_char.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 09:27:50 by erli              #+#    #+#             */
-/*   Updated: 2018/12/05 14:03:39 by erli             ###   ########.fr       */
+/*   Created: 2018/12/02 14:18:11 by erli              #+#    #+#             */
+/*   Updated: 2018/12/05 14:30:38 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlxadd.h"
 #include "libft.h"
+#include <stdlib.h>
 
-void	mlx_pixel_put_img(t_img *img, int x, int y, t_colour colour)
+void	ft_free_mat_char(char **mat, int row)
 {
-	int			i;
-	t_colour	*int_ptr;
+	int i;
 
-	if (img == 0)
+	i = 0;
+	if (mat == NULL)
 		return ;
-	if (x < 0 || y < 0 || x > img->size_line / img->bypp || y > img->nb_line)
-		return ;
-	i = x * (img->bypp) + y * img->size_line;
-	if (i > img->size_line * y && i < (img->size_line * (y + 1)))
+	while (i < row)
 	{
-		int_ptr = (t_colour *)((img->str) + i);
-		int_ptr[0] = colour;
+		free(mat[i]);
+		i++;
 	}
+	free(mat);
 }

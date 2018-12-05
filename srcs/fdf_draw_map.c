@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 13:23:17 by erli              #+#    #+#             */
-/*   Updated: 2018/12/05 10:36:22 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/05 13:57:58 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static	t_mapcoord	*fdf_rotation(t_fdf_param *param, t_map *point)
 	y = point->coord->my * param->zoom - param->map_height * param->zoom / 2;
 	z = point->coord->mz * param->coef_alt;
 	if (z > param->max_z)
-		param->max_z = coord->mz;
+		param->max_z = z;
 	if (z < param->min_z)
-		param->min_z = coord->mz;
+		param->min_z = z;
 	coord->mx = param->rot[0][0] * x + param->rot[0][1] * y;
 	coord->mx += param->rot[0][2] * z;
 	coord->my = param->rot[1][0] * x + param->rot[1][1] * y;
@@ -87,4 +87,5 @@ void				fdf_draw_map(t_fdf_param *param)
 	}
 	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr,
 		param->img->ptr, 0, LETTERBOX_HEIGHT);
+	fdf_debug_print_param(param);
 }
