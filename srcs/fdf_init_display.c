@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 18:14:50 by erli              #+#    #+#             */
-/*   Updated: 2018/12/04 12:57:34 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/05 16:04:43 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,26 @@
 static	void	put_instructions(t_fdf_param *param)
 {
 	mlx_string_put(param->mlx_ptr, param->win_ptr, 30,
-		PIX_HEIGHT + LETTERBOX_HEIGHT + 15, mlx_str_to_colour(TEXT_COLOUR),
-		"[w] and [s] for vertical z translation");
+		PIX_HEIGHT + LETTERBOX_HEIGHT + 5, mlx_str_to_colour(TEXT_COLOUR),
+		"[w] and [s] for vertical x translation");
 	mlx_string_put(param->mlx_ptr, param->win_ptr, 30,
-		PIX_HEIGHT + LETTERBOX_HEIGHT + 35, mlx_str_to_colour(TEXT_COLOUR),
-		"[a] and [d] for horizontal x translation");
-	mlx_string_put(param->mlx_ptr, param->win_ptr, 30,
-		PIX_HEIGHT + LETTERBOX_HEIGHT + 55, mlx_str_to_colour(TEXT_COLOUR),
-		"[q] and [e] for horizontal y translation");
+		PIX_HEIGHT + LETTERBOX_HEIGHT + 25, mlx_str_to_colour(TEXT_COLOUR),
+		"[a] and [d] for horizontal y translation");
 	mlx_string_put(param->mlx_ptr, param->win_ptr, PIX_WIDTH - 420,
-		PIX_HEIGHT + LETTERBOX_HEIGHT + 15, mlx_str_to_colour(TEXT_COLOUR),
-		"[i] and [k] for vertical z rotation");
+		PIX_HEIGHT + LETTERBOX_HEIGHT + 5, mlx_str_to_colour(TEXT_COLOUR),
+		"[j] and [l] for vertical z rotation");
 	mlx_string_put(param->mlx_ptr, param->win_ptr, PIX_WIDTH - 420,
-		PIX_HEIGHT + LETTERBOX_HEIGHT + 35, mlx_str_to_colour(TEXT_COLOUR),
-		"[j] and [l] for horizontal x rotation");
+		PIX_HEIGHT + LETTERBOX_HEIGHT + 25, mlx_str_to_colour(TEXT_COLOUR),
+		"[i] and [k] for horizontal x rotation");
 	mlx_string_put(param->mlx_ptr, param->win_ptr, PIX_WIDTH - 420,
-		PIX_HEIGHT + LETTERBOX_HEIGHT + 55, mlx_str_to_colour(TEXT_COLOUR),
+		PIX_HEIGHT + LETTERBOX_HEIGHT + 45, mlx_str_to_colour(TEXT_COLOUR),
 		"[u] and [o] for horizontal y rotation");
+	mlx_string_put(param->mlx_ptr, param->win_ptr, 30,
+		PIX_HEIGHT + LETTERBOX_HEIGHT + 45, mlx_str_to_colour(TEXT_COLOUR),
+		"[r] and [f] for zoom in and out");
+	mlx_string_put(param->mlx_ptr, param->win_ptr, 30,
+		PIX_HEIGHT + LETTERBOX_HEIGHT + 65, mlx_str_to_colour(TEXT_COLOUR),
+		"[t] and [g] for altitude scaling");
 }
 
 static	void	put_to_win(t_fdf_param *param, char *filename)
@@ -43,6 +46,15 @@ static	void	put_to_win(t_fdf_param *param, char *filename)
 	mlx_string_put(param->mlx_ptr, param->win_ptr, PIX_WIDTH / 2 - 70,
 		PIX_HEIGHT / 2 + LETTERBOX_HEIGHT - 20, mlx_str_to_colour(TEXT_COLOUR),
 		"Drawing map...");
+	mlx_string_put(param->mlx_ptr, param->win_ptr, PIX_WIDTH - 420,
+		PIX_HEIGHT + LETTERBOX_HEIGHT + 65,	mlx_str_to_colour(TEXT_COLOUR),
+		"[b] and [n] for default or map coloring");
+	mlx_string_put(param->mlx_ptr, param->win_ptr, 500,
+		PIX_HEIGHT + LETTERBOX_HEIGHT + 25, mlx_str_to_colour(TEXT_COLOUR),
+		"[c] iso");
+	mlx_string_put(param->mlx_ptr, param->win_ptr, 500,
+		PIX_HEIGHT + LETTERBOX_HEIGHT + 45, mlx_str_to_colour(TEXT_COLOUR),
+		"[v] para");
 	mlx_string_put(param->mlx_ptr, param->win_ptr, PIX_WIDTH / 2 - title_offset,
 		LETTERBOX_HEIGHT / 2 - 11, mlx_str_to_colour(TEXT_COLOUR),
 		filename);

@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 11:06:03 by erli              #+#    #+#             */
-/*   Updated: 2018/12/05 14:09:02 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/05 16:10:40 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@
 # define PIX_HEIGHT 720
 # define DEFAULT_COEF_ALT 5
 # define LETTERBOX_HEIGHT 100
-# define LETTERBOX_COLOUR "0x00a0a020"
+# define LETTERBOX_COLOUR "0x002853af"
 # define TEXT_COLOUR "0x00ff1d8e"
 # define KEY_ESC 53
 # define DEFAULT_ROTX 70
 # define DEFAULT_ROTY -20
 # define DEFAULT_ROTZ 40
 # define DEFAULT_TRZ 00
-# define DEFAULT_TOP_COLOUR "0x00ff0000"
-# define DEFAULT_BOT_COLOUR "0x000000ff"
+# define DEFAULT_TOP_COLOUR "0x00db307a"
+# define DEFAULT_BOT_COLOUR "0x003a72ea"
 
 typedef	struct		s_map
 {
