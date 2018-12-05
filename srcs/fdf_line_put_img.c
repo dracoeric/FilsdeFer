@@ -6,20 +6,21 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 16:33:10 by erli              #+#    #+#             */
-/*   Updated: 2018/12/04 14:25:59 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/05 10:25:00 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft.h"
 
 static	void	draw_line_case1(t_fdf_param *param, t_pixcoord *a,
 					t_pixcoord *b, t_colour (*f)(t_fdf_param *, int))
 {
-	int x;
-	int x_diff;
-	int y;
-	int z;
-	int x_pro;
+	int		x;
+	int		x_diff;
+	int		y;
+	int		z;
+	int		x_pro;
 
 	x = a->px;
 	x_diff = b->px - a->px;
@@ -28,8 +29,8 @@ static	void	draw_line_case1(t_fdf_param *param, t_pixcoord *a,
 		x_pro = x - a->px;
 		if (x_diff != 0)
 		{
-			z = a->pz + x_pro * (b->pz - a->pz) / x_diff;
-			y = a->py + x_pro * (b->py - a->py) / x_diff;
+			z = a->pz + (x_pro * (b->pz - a->pz)) / x_diff;
+			y = a->py + (x_pro * (b->py - a->py)) / x_diff;
 		}
 		else
 		{
@@ -44,19 +45,19 @@ static	void	draw_line_case1(t_fdf_param *param, t_pixcoord *a,
 static	void	draw_line_case2(t_fdf_param *param, t_pixcoord *a,
 					t_pixcoord *b, t_colour (*f)(t_fdf_param *, int))
 {
-	int x;
-	int y_diff;
-	int y;
-	int z;
-	int	y_pro;
+	int		x;
+	int		y_diff;
+	int		y;
+	int		z;
+	int		y_pro;
 
 	y = a->py;
 	y_diff = b->py - a->py;
 	while (y <= b->py)
 	{
 		y_pro = y - a->py;
-		z = a->pz + y_pro * (b->pz - a->pz) / y_diff;
-		x = a->px + y_pro * (b->px - a->px) / y_diff;
+		z = a->pz + (y_pro * (b->pz - a->pz)) / y_diff;
+		x = a->px + (y_pro * (b->px - a->px)) / y_diff;
 		mlx_pixel_put_img(param->img, x, y, f(param, z));
 		y++;
 	}

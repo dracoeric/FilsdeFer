@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:36:15 by erli              #+#    #+#             */
-/*   Updated: 2018/12/04 14:33:51 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/05 11:06:08 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static	void	fdf_init_others(t_fdf_param *param)
 	int		zoom2;
 
 	param->coef_alt = DEFAULT_COEF_ALT;
-	zoom1 = PIX_WIDTH / param->map_width * 8 / 10;
-	zoom2 = PIX_HEIGHT / param->map_height * 8 / 10;
+	zoom1 = PIX_WIDTH / param->map_width * 6 / 10;
+	zoom2 = PIX_HEIGHT / param->map_height * 6 / 10;
 	param->zoom = (zoom1 < zoom2 ? zoom1 : zoom2);
 	param->max_z = 0;
 	param->min_z = 0;
@@ -65,7 +65,7 @@ static	void	fdf_init_others(t_fdf_param *param)
 	param->trz = DEFAULT_TRZ;
 	param->colour_top = mlx_str_to_colour(DEFAULT_TOP_COLOUR);
 	param->colour_bot = mlx_str_to_colour(DEFAULT_BOT_COLOUR);
-	param->cg = &fdf_uni_grad;
+	param->cg = &fdf_gradiant;
 	param->proj = &mlx_para_proj;
 }
 

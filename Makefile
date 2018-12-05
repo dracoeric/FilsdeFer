@@ -6,7 +6,7 @@
 #    By: erli <erli@42.fr>                          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/30 10:43:47 by erli              #+#    #+#              #
-#    Updated: 2018/12/04 16:19:06 by erli             ###   ########.fr        #
+#    Updated: 2018/12/05 10:33:04 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -48,7 +48,7 @@ LIBMLX			=	minilibx_macos/libmlx.a
 all				:	$(NAME)
 
 $(NAME)			:	$(LIBFT) $(LIBMLX) $(OBJS) includes/fdf.h includes/mlxadd.h
-					$(CC) $(CFLAGS) $(INCL) $(LIB) -o $(NAME) $(OBJS) $(FRAMEWORK)
+					$(CC) $(CFLAGS) $(INCL) $(LIB) -o $(NAME) $(OBJS) $(FRAMEWORK) -fsanitize=address
 
 $(OBJSDIR)/%.o	:	$(SRCSDIR)/%.c includes/fdf.h includes/mlxadd.h
 					@mkdir -p $(OBJSDIR)

@@ -6,13 +6,27 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 11:47:40 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 18:26:31 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/05 12:03:40 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 #include <stdlib.h>
+
+static	int			fdf_alter_z(char *data)
+{
+	int z;
+
+	z = ft_atoi(data);
+	if (z <= -50 && z >= -20)
+		return (-20 + (z + 20) / 4);
+	else if (z > 25 && z <= 4050)
+		return (25 + (z - 25) / 200);
+	else if (z > 4050)
+		return (45 + (z - 4050) / 3000);
+	return (z);
+}
 
 static	t_map		*fdf_create_map_point(char *data, int x, int y)
 {
@@ -36,7 +50,7 @@ static	t_map		*fdf_create_map_point(char *data, int x, int y)
 	elem->bot = 0;
 	if ((ptr = ft_strchr(data, ',')))
 		*(ptr++) = '\0';
-	coord->mz = ft_atoi(data);
+	coord->mz = fdf_alter_z(data);
 	colour = (ptr == 0 ? 0 : mlx_str_to_colour(ptr));
 	elem->colour = colour;
 	return (elem);

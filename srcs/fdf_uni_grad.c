@@ -6,12 +6,11 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 14:10:05 by erli              #+#    #+#             */
-/*   Updated: 2018/12/04 17:36:32 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/05 10:25:30 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "libft.h"
 
 t_colour	fdf_uni_grad(t_fdf_param *param, int z)
 {
@@ -24,14 +23,15 @@ t_colour	fdf_uni_grad(t_fdf_param *param, int z)
 	colour = param->colour_bot;
 	delta_z = param->max_z - param->min_z;
 	if (delta_z == 0)
-		return(colour);
+		return (colour);
 	delta_b = (param->colour_top % 256) - (colour % 256);
 	delta_g = (param->colour_top / 256) % 256 - (colour / 256) % 256;
 	delta_r = (param->colour_top / 65536) % 256 - (colour / 65536) % 256;
-	colour += (delta_b * (z - param->min_z) / delta_z);
-	colour += (delta_g * 256 * (z - param->min_z) / delta_z);
-	colour += (delta_r * 65536 * (z - param->min_z) / delta_z);
-	if (z != 0)
-		ft_printf("z = %d\n", z);
+	colour += (int)(delta_b * ((double)(z - param->min_z)
+		/ (double)delta_z));
+	colour += 256 * (int)(delta_g * ((double)(z - param->min_z)
+		/ (double)delta_z));
+	colour += 65536 * (int)(delta_r * ((double)(z - param->min_z)
+		/ (double)delta_z));
 	return (colour);
 }
