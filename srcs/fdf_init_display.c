@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 18:14:50 by erli              #+#    #+#             */
-/*   Updated: 2018/12/05 16:04:43 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/06 14:43:15 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static	void	put_to_win(t_fdf_param *param, char *filename)
 		PIX_HEIGHT / 2 + LETTERBOX_HEIGHT - 20, mlx_str_to_colour(TEXT_COLOUR),
 		"Drawing map...");
 	mlx_string_put(param->mlx_ptr, param->win_ptr, PIX_WIDTH - 420,
-		PIX_HEIGHT + LETTERBOX_HEIGHT + 65,	mlx_str_to_colour(TEXT_COLOUR),
+		PIX_HEIGHT + LETTERBOX_HEIGHT + 65, mlx_str_to_colour(TEXT_COLOUR),
 		"[b] and [n] for default or map coloring");
 	mlx_string_put(param->mlx_ptr, param->win_ptr, 500,
 		PIX_HEIGHT + LETTERBOX_HEIGHT + 25, mlx_str_to_colour(TEXT_COLOUR),

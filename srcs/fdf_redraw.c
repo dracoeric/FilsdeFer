@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 16:17:27 by erli              #+#    #+#             */
-/*   Updated: 2018/12/04 16:35:41 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/06 14:43:50 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	fdf_redraw(t_fdf_param *para)
 {
-	free(para->rot);
+	ft_free_mat_int(para->rot);
 	if (!(para->rot = fdf_make_rot_mat(para)))
 	{
 		fdf_free_param(&para, 1, 111, 11);
